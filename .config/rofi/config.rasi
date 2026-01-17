@@ -1,0 +1,8 @@
+configuration {
+    modi: "drun,run,window";
+	font: "OMORI_GAME 20";
+}
+
+
+@theme "./omori1.rasi"
+

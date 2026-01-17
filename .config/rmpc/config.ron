@@ -1,0 +1,243 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    address: "127.0.0.1:6600",
+    password: None,
+    theme: "pywal16",
+	enable_config_hot_reload: true,
+    cache_dir: None,
+    on_song_change: ["~/.config/rmpc/notify"],
+    volume_step: 5,
+    max_fps: 60,
+    scrolloff: 0,
+    wrap_navigation: false,
+    enable_mouse: true,
+    status_update_interval_ms: 1000,
+    select_current_song_on_change: true,
+    album_art: (
+        method: Auto,
+        max_size_px: (width: 2000, height: 2000),
+        disabled_protocols: ["http://", "https://"],
+        vertical_align: Center,
+        horizontal_align: Center,
+    ),
+    keybinds: (
+        global: {
+            ":":       CommandMode,
+            ",":       VolumeDown,
+            "s":       Stop,
+            ".":       VolumeUp,
+            "<Tab>":   NextTab,
+            "<S-Tab>": PreviousTab,
+            "1":       SwitchToTab("Main"),
+            "2":       SwitchToTab("Search"),
+            "3":       SwitchToTab("Playlist"),
+            "q":       Quit,
+            ">":       NextTrack,
+            "p":       TogglePause,
+            "<":       PreviousTrack,
+            "f":       SeekForward,
+            "z":       ToggleRepeat,
+            "x":       ToggleRandom,
+            "c":       ToggleConsume,
+            "v":       ToggleSingle,
+            "b":       SeekBack,
+            "~":       ShowHelp,
+            "I":       ShowCurrentSongInfo,
+            "O":       ShowOutputs,
+            "P":       ShowDecoders,
+        },
+        navigation: {
+            "k":         Up,
+            "j":         Down,
+            "h":         Left,
+            "l":         Right,
+            "<Up>":      Up,
+            "<Down>":    Down,
+            "<Left>":    Left,
+            "<Right>":   Right,
+            "<C-k>":     PaneUp,
+            "<C-j>":     PaneDown,
+            "<C-h>":     PaneLeft,
+            "<C-l>":     PaneRight,
+            "<C-Up>":    PaneUp,
+            "<C-Down>":  PaneDown,
+            "<C-Right>": PaneLeft,
+            "<C-Left>":  PaneRight,
+            "<C-u>":     UpHalf,
+            "N":         PreviousResult,
+            "a":         Add,
+            "A":         AddAll,
+            "r":         Rename,
+            "n":         NextResult,
+            "g":         Top,
+            "<Space>":   Select,
+            "<C-Space>": InvertSelection,
+            "G":         Bottom,
+            "<CR>":      AddOptions(kind: Action(all: false, autoplay: First, position: Replace)),
+            "<C-CR>":    Confirm,
+            "i":         FocusInput,
+            "J":         MoveDown,
+            "<C-d>":     DownHalf,
+            "/":         EnterSearch,
+            "<C-c>":     Close,
+            "<Esc>":     Close,
+            "K":         MoveUp,
+            "D":         Delete,
+            "i":         ShowInfo,
+            "S":         Save(),
+        },
+        queue: {
+            "D":       DeleteAll,
+            "<CR>":    Play,
+            "<C-s>":   Save,
+            "a":       AddToPlaylist,
+            "d":       Delete,
+            "C":       JumpToCurrent,
+        },
+    ),
+    search: (
+        case_sensitive: false,
+        mode: Contains,
+        tags: [
+            (value: "any",         label: "Any Tag"),
+            (value: "title",       label: "Title"),
+            (value: "album",       label: "Album"),
+            (value: "artist",      label: "Artist"),
+            (value: "filename",    label: "Filename"),
+            (value: "genre",       label: "Genre"),
+        ],
+    ),
+    artists: (
+        album_display_mode: SplitByDate,
+        album_sort_by: Date,
+    ),
+    tabs: [
+            (
+        name: "Main",
+        pane: Split(
+            direction: Vertical,
+            panes: [
+                (
+                    size: "45%",
+                    borders: "ALL",
+                    pane: Split(
+                        borders: "ALL",
+                        direction: Horizontal,
+                        panes: [
+                            (
+                                size: "83%",
+                                pane: Pane(AlbumArtists),
+                            ),
+                            (
+                                size: "17%",
+                                pane: Pane(AlbumArt),
+                            ),
+                        ],
+                    ),
+                ),
+                (
+                    size: "35%",
+                    borders: "ALL",
+                    pane: Split(
+                        borders: "ALL",
+                        direction: Horizontal,
+                        panes: [
+                            (
+                                size: "100%",
+                                pane: Pane(Cava),
+                            ),
+                        ],
+                    ),
+                ),
+                (
+                    size: "17%",
+                    borders: "ALL",
+                    pane: Split(
+                        borders: "ALL",
+                        direction: Horizontal,
+                        panes: [
+                            (
+                                size: "100%",
+                                pane: Pane(Queue),
+                            ),
+                        ],
+                    ),
+                ),
+                (
+                    size: "3%",
+                    pane: Split(
+                        direction: Horizontal,
+                        panes: [
+                            (
+                                size: "50%",
+                                pane: Pane(Property(
+                                    content: [
+                                    (kind: Text(" ")),
+                                    (kind: Property(Status(QueueLength()))),
+                                    (kind: Text(" items, length: ")),
+                                    (kind: Property(Status(QueueTimeTotal()))),
+                                    (kind: Text(", remaining: ")),
+                                    (kind: Property(Status(QueueTimeRemaining()))),
+                                    ], align: Left,
+                                )),
+                            ),
+                            (
+                                size: "50%",
+                                pane: Pane(Property(
+                                    content: [
+                                    (kind: Property(Status(RepeatV2(on_label: "󰑖 ", off_label: "󰑗 ", on_style: (fg: "#6524B3"), off_style: (fg: "#bd7eff"))))),
+                                    (kind: Text(" / "),style: (fg: "#6524B3")),
+                                    (kind: Property(Status(RandomV2(on_label: " ", off_label: "󰒞 ", on_style: (fg: "#6524B3"), off_style: (fg: "#bd7eff"))))),
+                                    (kind: Text(" / "),style: (fg: "#6524B3")),
+                                    (kind: Property(Status(ConsumeV2(on_label: "󰆘 ", off_label: "󱛪 ", on_style: (fg: "#6524B3"), off_style: (fg: "#bd7eff"))))),
+                                    (kind: Text(" / "),style: (fg: "#6524B3")),
+                                    (kind: Property(Status(SingleV2(on_label: "󰑘 ", off_label: "󰎦 ", on_style: (fg: "#6524B3"), off_style: (fg: "#bd7eff"))))),
+                                    ], align: Right,
+                                )),
+                            ),
+                        ],
+                    ),
+                ),
+            ],
+        ),
+    ),
+        (
+            name: "Search",
+            pane: Split(
+                direction: Horizontal,
+                panes: [(size: "100%", borders: "ALL", pane: Pane(Search))],
+            ),
+        ),
+        (
+            name: "Playlist",
+            pane: Split(
+                direction: Horizontal,
+                panes: [(size: "100%", borders: "ALL", pane: Pane(Playlists))],
+            ),
+        ),
+    ],
+    cava: (
+        framerate: 60, // default 60
+        autosens: true, // default true
+        sensitivity: 100, // default 100
+        lower_cutoff_freq: 200, // not passed to cava if not provided
+        higher_cutoff_freq: 5000, // not passed to cava if not provided
+        input: (
+            method: Pipewire,
+            source: "auto",
+            sample_rate: 96000,
+            channels: 2,
+            sample_bits: 24,
+        ),
+        smoothing: (
+            noise_reduction: 50, // default 77
+            monstercat: false, // default false
+            waves: false, // default false
+        ),
+        // this is a list of floating point numbers thats directly passed to cava
+        // they are passed in order that they are defined
+        eq: [5, 3, 2, 1, 1]
+    ),
+)
