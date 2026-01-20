@@ -18,7 +18,7 @@ greenclip daemon &
 (sleep 5 && $TERMINAL -e rmpc) &
 (sleep 5 && $TERMINAL -e steam) &
 (sleep 5 && librewolf) &
-(sleep 5 && thunderbird --headless) &
+(sleep 5 && thunderbirdSucks) &
 (sleep 5 && Telegram) &
 (sleep 5 && signal-desktop --password-store=kwallet6) &
 dwmblocks &

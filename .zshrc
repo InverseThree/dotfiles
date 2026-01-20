@@ -22,18 +22,18 @@ setopt no_case_glob no_case_match # make cmp case insensitive
 unsetopt prompt_sp # don't autoclean blanklines
 stty stop undef # disable accidental ctrl s
 
-zstyle :compinstall filename '/home/inverse/.zshrc'
+zstyle :compinstall filename '/$HOME/.zshrc'
 
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-source /home/inverse/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/inverse/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /home/inverse/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /home/inverse/.zsh/zsh-auto-notify/auto-notify.plugin.zsh
-source /home/inverse/.zsh/zsh-shift-select/zsh-shift-select.plugin.zsh
+source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.zsh/zsh-auto-notify/auto-notify.plugin.zsh
+source $HOME/.zsh/zsh-shift-select/zsh-shift-select.plugin.zsh
 
 NEWLINE=$'\n'
 # PROMPT="%K%F %n %K %~ %f%k ❯ " # nord theme
