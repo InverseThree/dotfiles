@@ -1,3 +1,3 @@
 # lf
-my own build of lf. preview:<br/>
+my config for lf. preview:<br/>
 ![rice](preview.png)

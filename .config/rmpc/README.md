@@ -1,3 +1,3 @@
 # rmpc
-my own build of rmpc. preview:<br/>
+my config for rmpc. preview:<br/>
 ![rice](preview.png)
