@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 50 50"
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" baseProfile="tiny">
+<title>Qt SVG Document</title>
+<desc>Generated with Qt</desc>
+<defs>
+</defs>
+<g fill="none" stroke="black" stroke-width="1" fill-rule="evenodd" stroke-linecap="square" stroke-linejoin="bevel" >
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="OMORI_GAME" font-size="10" font-weight="400" font-style="normal" 
+>
+<image x="0" y="0" width="50" height="50" preserveAspectRatio="none" image-rendering="optimizeSpeed" xlink:href="data:image/png;base64,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" />
+</g>
+
+<g fill="none" stroke="#7500ca" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,1.5)"
+font-family="OMORI_GAME" font-size="10" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#7500ca" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(2.38095,0,0,2.38095,0,1.5)"
+font-family="OMORI_GAME" font-size="10" font-weight="400" font-style="normal" 
+>
+<polyline fill="none" vector-effect="none" points="7.5,11.5 10.5,8.5 13.5,11.5 " />
+</g>
+
+<g fill="none" stroke="#7500ca" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,1.5)"
+font-family="OMORI_GAME" font-size="10" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#bd7eff" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="OMORI_GAME" font-size="10" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#bd7eff" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(2.38095,0,0,2.38095,0,0)"
+font-family="OMORI_GAME" font-size="10" font-weight="400" font-style="normal" 
+>
+<polyline fill="none" vector-effect="none" points="7.5,11.5 10.5,8.5 13.5,11.5 " />
+</g>
+
+<g fill="none" stroke="#bd7eff" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="OMORI_GAME" font-size="10" font-weight="400" font-style="normal" 
+>
+</g>
+
+<g fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="OMORI_GAME" font-size="10" font-weight="400" font-style="normal" 
+>
+</g>
+</g>
+</svg>
