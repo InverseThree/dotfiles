@@ -1,17 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
 draw() {
   kitten icat --stdin no --transfer-mode memory --place "${w}x${h}@${x}x${y}" "$1" </dev/null >/dev/tty
-  exit 1
+  [[ $(kitten icat --stdin no --transfer-mode memory "$1" </dev/null) == "" ]] && echo "no preview sorry"
 }
 
 altDraw() {
   if [[ $(echo $(pistol "$file")) == *"PERMISSIONS | SIZE | MODIFICATION TIME | FILE NAME"* ]]; then
     pistol "$file"
   else
-    bat --color always "$file"
+    bat --color always "$file" 
   fi
-  exit 1
 }
 
 file="$1"
@@ -21,6 +20,8 @@ x="$4"
 y="$5"
 filename=${file##*/}
 mime=$(mimetype "$file")
+
+[[ ! ${mime##*: } =~ (video|audio).* ]] && (( $(du -m "$file" | cut -f 1) > 10 )) && echo "file is too big to preview" && exit 1
 
 case "${mime##*: }" in 
   image/*)
@@ -41,24 +42,30 @@ case "${mime##*: }" in
     draw "$(vidthumb "$file")"
     ;;
   application/x-blender)
-    exit 0
+    echo "no preview sorry"
     ;;
   application/x-shellscript)
     altDraw
     ;;
   application/*)
-    if [[ ! -f "/tmp/${filename%.*}.pdf" || ! -f "/tmp/${file////_}.png" ]]; then
-      [[ $(file -Lb --mime-type "$file") != "application/pdf" && $(file -Lb --mime-type "$file") != "application/json" ]] &&
-        libreoffice --headless --convert-to pdf "$file" --outdir "/tmp/" >/dev/null 2>&1
+    if [[ $(cat "file") != "/tmp/${filename%.*}.txt" ]]; then
+      echo $(cat "$file") > "/tmp/${filename%.*}.txt" && rm /tmp/${filename%.*}.pdf
 
-      if [[ $(file -Lb --mime-type "$file") == "application/pdf" ]]; then
-        pdftoppm -f 1 -l 1 "$file" >> "/tmp/${file////_}.png"
-      elif [[ -f "/tmp/${filename%.*}.pdf" ]]; then
-        pdftoppm -f 1 -l 1 "/tmp/${filename%.*}.pdf" >> "/tmp/${file////_}.png"
-      else
-        altDraw
+      if [[ ! -f "/tmp/${filename%.*}.pdf" || ! -f "/tmp/${file////_}.png" ]]; then
+        if [[ ! $(file -Lb --mime-type "$file") =~ (pdf|json).* ]]; then
+          libreoffice --headless --convert-to pdf "$file" --outdir "/tmp/" >/dev/null 2>&1
+        fi
+
+        if [[ $(file -Lb --mime-type "$file") == "application/pdf" ]]; then
+          pdftoppm -f 1 -l 1 "$file" > "/tmp/${file////_}.png"
+        elif [[ -f "/tmp/${filename%.*}.pdf" ]]; then
+          pdftoppm -f 1 -l 1 "/tmp/${filename%.*}.pdf" > "/tmp/${file////_}.png"
+        else
+          altDraw
+        fi
       fi
     fi
+
     draw "/tmp/${file////_}.png"
     ;;
   *)
