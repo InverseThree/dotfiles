@@ -149,6 +149,6 @@ map gm cd ~/Music
 map gp cd ~/Pictures
 map gu cd ~/polyu
 map gv cd ~/Videos
-map gs cd ~/.local/share
-map gS cd ~/.local/share/Steam/steamapps/compatdata
+map gS cd ~/.local/share
+map gs cd ~/scripts
 map gt cd ~/.local/share/Trash/files
