@@ -3,14 +3,14 @@
 draw() {
   kitten icat --stdin no --transfer-mode memory --place "${w}x${h}@${x}x${y}" "$1" </dev/null >/dev/tty
   [[ $(kitten icat --stdin no --transfer-mode memory "$1" </dev/null) == "" ]] && echo "no preview sorry"
+
+  exit 1
 }
 
 altDraw() {
-  if [[ $(echo $(pistol "$file")) == *"PERMISSIONS | SIZE | MODIFICATION TIME | FILE NAME"* ]]; then
-    pistol "$file"
-  else
-    bat --color always "$file" 
-  fi
+  [[ $(echo $(pistol "$file")) == *"PERMISSIONS | SIZE | MODIFICATION TIME"* ]] && pistol "$file" || bat --color always "$file"
+
+  exit 1
 }
 
 file="$1"
@@ -49,11 +49,11 @@ case "${mime##*: }" in
     ;;
   application/*)
     if [[ $(cat "file") != "/tmp/${filename%.*}.txt" ]]; then
-      echo $(cat "$file") > "/tmp/${filename%.*}.txt" && rm /tmp/${filename%.*}.pdf
+      echo $(cat "$file") > "/tmp/${filename%.*}.txt" && [[ -f "/tmp/${filename%.*}.pdf" ]] && rm /tmp/${filename%.*}.pdf
 
       if [[ ! -f "/tmp/${filename%.*}.pdf" || ! -f "/tmp/${file////_}.png" ]]; then
         if [[ ! $(file -Lb --mime-type "$file") =~ (pdf|json).* ]]; then
-          libreoffice --headless --convert-to pdf "$file" --outdir "/tmp/" >/dev/null 2>&1
+          timeout 3 libreoffice --headless --convert-to pdf "$file" --outdir "/tmp/" >/dev/null 2>&1
         fi
 
         if [[ $(file -Lb --mime-type "$file") == "application/pdf" ]]; then
