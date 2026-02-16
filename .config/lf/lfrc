@@ -147,6 +147,7 @@ map gd cd ~/Downloads
 map gh cd ~
 map gm cd ~/Music
 map gp cd ~/Pictures
+map gU cd /run/media/inverse/SanDisk
 map gu cd ~/polyu
 map gv cd ~/Videos
 map gS cd ~/.local/share
