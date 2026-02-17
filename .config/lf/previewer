@@ -1,8 +1,8 @@
 #!/bin/bash
 
 draw() {
-  kitten icat --stdin no --transfer-mode memory --place "${w}x${h}@${x}x${y}" "$1" </dev/null >/dev/tty
-  [[ $(kitten icat --stdin no --transfer-mode memory "$1" </dev/null) == "" ]] && echo "no preview sorry"
+  kitten icat --stdin no --transfer-mode stream --place "${w}x${h}@${x}x${y}" "$1" </dev/null >/dev/tty
+  [[ $(kitten icat --stdin no --transfer-mode stream "$1" </dev/null) == "" ]] && echo "no preview sorry"
 
   exit 1
 }
