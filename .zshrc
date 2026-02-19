@@ -48,4 +48,3 @@ alias configDot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 alias paruQ="paru -Qq | fzf -e --preview='paru -Qs {1}' | xargs -r paru -Qi"
-alias steam='steam -dev -console -nofriendsui -no-dwrite -nointro -nobigpicture -nofasthtml -nocrashmonitor -noshaders -no-shared-textures -cef-single-process -cef-in-process-gpu -single_core -cef-disable-d3d11 -cef-disable-sandbox -disable-winh264 -cef-force-32bit -no-cef-sandbox -vrdisable -cef-disable-breakpad'

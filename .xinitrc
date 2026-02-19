@@ -17,9 +17,9 @@ wal -R &
 greenclip daemon &
 (sleep 5 && $TERMINAL -e rmpc) &
 (sleep 5 && librewolf) &
+(sleep 5 && signal-desktop --password-store=kwallet6) &
 (sleep 5 && thunderbirdSucks) &
 (sleep 5 && Telegram) &
-(sleep 5 && signal-desktop --password-store=kwallet6) &
-(sleep 5 && steam -dev -console -nofriendsui -no-dwrite -nointro -nobigpicture -nofasthtml -nocrashmonitor -noshaders -no-shared-textures -cef-single-process -cef-in-process-gpu -single_core -cef-disable-d3d11 -cef-disable-sandbox -disable-winh264 -cef-force-32bit -no-cef-sandbox -vrdisable -cef-disable-breakpad) &
+(sleep 5 && steam) &
 dwmblocks &
 exec dwm
