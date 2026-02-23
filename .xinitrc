@@ -7,6 +7,7 @@ id=${info##*=}
 
 xrdb -merge ~/.Xresources &
 xset s off -dpms &
+xsettingsd &
 xidlehook --not-when-audio --timer 570 'rofi-lockscreen' '' &
 xgifwallpaper -v -s FILL ~/Pictures/OTHERWORLD_View.gif &
 xinput set-prop $id "libinput Scroll Method Enabled" 0, 0, 1 &
