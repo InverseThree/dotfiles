@@ -10,6 +10,7 @@ set hls is
 set number
 set relativenumber
 set cursorline
+set linebreak
 
 filetype plugin indent on
 set tabstop=4
@@ -39,6 +40,8 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'yeddaif/neovim-purple'
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+Plug 'neovim/nvim-lspconfig'
+Plug 'OXY2DEV/markview.nvim'
 
 call plug#end()
 
@@ -77,6 +80,36 @@ lua <<EOF
 --     or get_option(filetype, option)
 -- end
 
+vim.lsp.config['*'] = {
+    capabilities = { textDocument = { semanticTokens = { multilineTokenSupport = true } } },
+    root_markers = { '.git' },
+}
+
+-- Harper specific setup
+vim.lsp.config['harper'] = {
+    cmd = { 'harper-ls', '--stdio' },
+    filetypes = { 'markdown', 'text', 'tex', 'typst' },
+    settings = {
+      ["harper-ls"] = {
+        linters = {
+          LongSentences = false,
+          SentenceCapitalization = false
+        }
+      }
+    }
+}
+vim.lsp.enable('harper')
+
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+    callback = function()
+      vim.diagnostic.open_float(nil, {
+        focus = false,
+        border = "rounded",
+      })
+    end,
+})
+
 local highlight = {
     "Comment",
 }
@@ -110,6 +143,7 @@ require('nvim-autopairs').setup({
   enable_check_bracket_line = false,
   enable_moveright = false,
 })
+
 EOF
 
 let g:shades_of_purple_lightline = 1
