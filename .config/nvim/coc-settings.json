@@ -1,4 +1,9 @@
 {
+    "markdownlint.config": {
+        "default": true,
+        "line_length": false
+    },
+
     "languageserver": {
         "csharp-ls": {
           "command": "csharp-ls",
@@ -6,6 +11,7 @@
           "rootPatterns": ["*.csproj", ".vim/", ".git/", ".hg/"]
         }
     },
+
     "suggest.noselect": true
 }
 
