@@ -20,7 +20,7 @@ cmd mkdir ${{
 cmd mkfile ${{
   printf "File Name: "
   read ans
-  $EDITOR $ans
+  $TERMINAL -e $EDITOR $ans
 }}
 
 cmd copy-path ${{
