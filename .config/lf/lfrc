@@ -11,6 +11,8 @@ set info size:time
 set rulerfmt "%d  |%a  |%p  |\033[7;31m %m \033[0m  |\033[7;33m %c \033[0m  |\033[7;35m %s \033[0m  |\033[7;34m %f \033[0m  |%i/%t"
 
 # Custom Functions
+cmd clearAll $lf -remote "send $id clear" && lf -remote "send $id unselect"
+
 cmd mkdir ${{
   printf "Directory Name: "
   read ans
@@ -135,8 +137,8 @@ map R reload
 map mf mkfile
 map md mkdir
 map bg setwallpaper
-map C clear
-map sd calcdirsize
+map C clearAll
+map cds calcdirsize
 
 # Movement
 map gb cd /usr/bin
@@ -146,6 +148,7 @@ map gD cd ~/Documents
 map gd cd ~/Downloads
 map gh cd ~
 map gm cd ~/Music
+map gP cd ~/dev
 map gp cd ~/Pictures
 map gU cd /run/media/inverse/SanDisk
 map gu cd ~/polyu
