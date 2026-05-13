@@ -171,5 +171,4 @@ let g:coc_global_extensions = [
     \ 'coc-pyright',
     \ 'coc-sh',
     \ 'coc-sumneko-lua',
-    \ 'coc-markdownlint',
     \ ]
