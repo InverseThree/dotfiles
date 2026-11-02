@@ -8,7 +8,7 @@ set icons true
 set sortby time
 set reverse!
 set info size:time
-set rulerfmt "%d  |%a  |%p  |\033[7;31m %m \033[0m  |\033[7;33m %c \033[0m  |\033[7;35m %s \033[0m  |\033[7;34m %f \033[0m  |%i/%t"
+set rulerfile ~/.config/lf/ruler
 
 # Custom Functions
 cmd clearAll $lf -remote "send $id clear" && lf -remote "send $id unselect"
